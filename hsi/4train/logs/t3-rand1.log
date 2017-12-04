@@ -1,0 +1,14 @@
+nohup: ignoring input
+I1128 18:18:40.336521 25341 caffe.cpp:99] Use GPU with device ID 0
+F1128 18:18:40.336750 25341 common.cpp:53] CPU-only Mode: cannot make GPU call.
+*** Check failure stack trace: ***
+    @     0x7f1d32bf95cd  google::LogMessage::Fail()
+    @     0x7f1d32bfb433  google::LogMessage::SendToLog()
+    @     0x7f1d32bf915b  google::LogMessage::Flush()
+    @     0x7f1d32bfbe1e  google::LogMessageFatal::~LogMessageFatal()
+    @           0x55aa03  caffe::Caffe::SetDevice()
+    @           0x5107c3  train()
+    @           0x51270e  main
+    @     0x7f1d30979830  __libc_start_main
+    @           0x510029  _start
+    @              (nil)  (unknown)
