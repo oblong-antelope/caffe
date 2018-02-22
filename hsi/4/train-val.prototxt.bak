@@ -4,12 +4,12 @@ layers {
   type: DATA  top: "data"
   top: "label"
   data_param {
-    source: "../databases-3to15/t3-rand1-train-lmdb"
+    source: "../databases/t3-rand1-train-lmdb"
     batch_size: 16
     backend: LMDB
   }
  transform_param {
-    mean_file: "../databases-3to15/t3-rand1-train-mean"
+    mean_file: "../databases/t3-rand1-train-mean"
     #mirror: true
   }
   include: { phase: TRAIN }
@@ -20,12 +20,12 @@ layers {
   top: "data"
   top: "label"
   data_param {
-    source: "../databases-3to15/t3-rand1-val-lmdb"
+    source: "../databases/t3-rand1-val-lmdb"
     batch_size: 4270 #  all=42776-9*N
     backend: LMDB
   }
   transform_param {
-    mean_file: "../databases-3to15/t3-rand1-train-mean"
+    mean_file: "../databases/t3-rand1-train-mean"
     mirror: false
   }
   include: { phase: TEST }
@@ -148,7 +148,7 @@ layers {
   weight_decay: 1
   weight_decay: 0
   convolution_param {
-    num_output: 16
+    num_output: ###@1###
     group: 1
     kernel_size: 1
     weight_filler {

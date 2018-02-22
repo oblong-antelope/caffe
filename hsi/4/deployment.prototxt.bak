@@ -1,0 +1,157 @@
+name: "CaffeNet"
+layer {
+    name: "data"
+    type: "Input"
+    top: "data"
+    input_param { shape: { dim: 1 dim: 200 dim: 5 dim: 5 } }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param { lr_mult: 1. decay_mult: 1}
+  param { lr_mult: 2. decay_mult: 0}
+  convolution_param {
+	num_output: 128 #256
+    #num_output: 192
+    #num_output: 64
+    pad: 0
+    kernel_size: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.05
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "conv1"
+  top: "relu1"
+}
+layer {
+   name: "norm1"
+   type: "LRN"
+   bottom: "relu1"
+   top: "norm1"
+   lrn_param {
+     local_size: 3
+     alpha: 0.0001
+     beta: 0.75
+   }
+}
+
+
+layer {
+  name: "drop1"
+  type: "Dropout"
+  bottom: "norm1"
+  top: "drop1"
+  dropout_param {
+    dropout_ratio: 0.6
+  }
+}
+
+########################################################
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "drop1"
+  top: "conv2"
+  param { lr_mult: 1. decay_mult: 1}
+  param { lr_mult: 2. decay_mult: 0}
+  convolution_param {
+    num_output: 64
+    group: 1
+    kernel_size: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.05
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "conv2"
+  top: "relu2"
+}
+
+layer {
+   name: "norm2"
+   type: "LRN"
+   bottom: "relu2"
+   top: "norm2"
+   lrn_param {
+     local_size: 3
+     alpha: 0.0001
+     beta: 0.75
+   }
+}
+
+layer {
+  name: "drop2"
+  type: "Dropout"
+  bottom: "norm2"
+  top: "drop2"
+  dropout_param {
+    dropout_ratio: 0.6
+  }
+}
+
+#############################################
+
+layer {
+  name: "conv3"
+  type: "Convolution"
+  bottom: "drop2"
+  top: "conv3"
+  param { lr_mult: 0.1 decay_mult: 1}
+  param { lr_mult: 0.1 decay_mult: 0}
+  convolution_param {
+    num_output: ###@1###
+    group: 1
+    kernel_size: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.05
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu3"
+  type: "ReLU"
+  bottom: "conv3"
+  top: "relu3"
+}
+layer {
+  name: "pool3"
+  type: "Pooling"
+  bottom: "relu3"
+  top: "pool3"
+  pooling_param {
+    pool: AVE
+    kernel_size: 5
+    stride: 1
+  }
+}
+
+layer {
+  name: "softmax"
+  type: "Softmax"
+  bottom: "pool3"
+  top: "softmax"
+}
+

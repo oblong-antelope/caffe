@@ -1,0 +1,16 @@
+net: "train-val.prototxt"
+test_iter: 10
+test_interval: 250
+base_lr: 0.0001
+lr_policy: "multistep"
+gamma: 0.1
+stepvalue: 20000
+stepvalue: 80000
+stepvalue: 200000
+display: 250
+max_iter: 300000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 2000
+snapshot_prefix: "models/###@6###"
+solver_mode: GPU
