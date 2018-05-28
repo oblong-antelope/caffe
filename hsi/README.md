@@ -29,6 +29,10 @@ usage
 - run "./configure [num_of_classes] [name_of_mat_data] [name_of_mat_label] [name_of_data_variable] [name_of_label_variable] [output_prefix_name]"
 
   e.g. ./configure 16 Indian_pines_corrected.mat Indian_pines_gt.mat indian_pines_corrected indian_pines_gt Indian_pines
+  
+  ./configure 16 Salinas_corrected.mat  Salinas_gt.mat salinas_corrected salinas_gt salinas
+  
+  ./configure 9	PaviaU.mat PaviaU_gt.mat paviaU paviaU_gt paviaUni
 
 - cd into each of directory 1, 2, 3 to preapre data and label for training:
 - under 1, run run_me.m using matalb
