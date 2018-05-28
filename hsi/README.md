@@ -32,7 +32,7 @@ usage
   
   ./configure 16 Salinas_corrected.mat  Salinas_gt.mat salinas_corrected salinas_gt salinas
   
-  ./configure 9	PaviaU.mat PaviaU_gt.mat paviaU paviaU_gt paviaUni
+  ./configure 9  PaviaU.mat PaviaU_gt.mat paviaU paviaU_gt paviaUni
 
 - cd into each of directory 1, 2, 3 to preapre data and label for training:
 - under 1, run run_me.m using matalb
